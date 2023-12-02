@@ -55,8 +55,35 @@ def part_a():
   print(s)
 
 
+def line_minimums(line):
+  valid = True
+
+  min_r, min_g, min_b = 0, 0, 0
+
+  ids, gamess = line.split(':')
+
+  for games in gamess.split(';'):
+    r, g, b = get_rgb_count(games)
+    min_r = max(min_r, r)
+    min_g = max(min_g, g)
+    min_b = max(min_b, b)
+
+  return min_r, min_g, min_b
+
+
+def part_b():
+  s = 0
+
+  for line in sys.stdin:
+    r, g, b = line_minimums(line)
+    s += r * g * b
+
+  print(s)
+
+
 def main(argv):
-  part_a()
+  # part_a()
+  part_b()
 
 
 if __name__ == '__main__':
